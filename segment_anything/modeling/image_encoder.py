@@ -107,7 +107,8 @@ class ImageEncoderViT(nn.Module):
         x = self.patch_embed(x)
         if self.pos_embed is not None:
             x = x + self.pos_embed
-
+            print("self.pos_embed.size()",self.pos_embed.size())
+            print("x.size()",x.size())
         for blk in self.blocks:
             x = blk(x)
 
