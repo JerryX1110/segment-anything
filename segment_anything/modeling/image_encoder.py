@@ -106,10 +106,11 @@ class ImageEncoderViT(nn.Module):
     def forward(self, x: torch.Tensor) -> torch.Tensor:
         x = self.patch_embed(x)
         if self.pos_embed is not None:
-            pos_embed = self.pos_embed.permute(0,3,1,2)
+            print("orginal posemb", self.pos_embed)
+            # pos_embed = self.pos_embed.permute(0,3,1,2)
             pos_embed = torch.nn.functional.interpolate(self.pos_embed, (x.size()[1],x.size()[2]),mode = 'nearest')
             print("pos_embed.size()",pos_embed.size())            
-            pos_embed = pos_embed.permute(0,2,3,1)
+            # pos_embed = pos_embed.permute(0,2,3,1)
             print("pos_embed.size()",pos_embed.size())
             print("x.size()",x.size())
             x = x + self.pos_embed
